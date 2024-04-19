@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Astro & Tailwind CSS Template
 
 Built by [Mike Andreuzza](https://michaelandreuzza.com) with Astro & Tailwind CSS under the [Creative Commons Attribution license](https://windbasics.com/license)
@@ -42,3 +43,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro --help` | Get help using the Astro CLI |
 
 # [Wind Basics](https://windbasics.com/)
+=======
+# landing-na
+>>>>>>> d2539ece4ba4dafea3561f25d5626ea9be4a33fb
