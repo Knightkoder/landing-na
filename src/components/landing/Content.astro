@@ -1,5 +1,6 @@
 ---
 import Intro from "./Intro.astro";
+import IntroBanner from "./Intro-banner.astro";
 import Work from "./Work.astro";
 import How from "./How.astro";
 import Testimonials from "./Testimonials.astro";
@@ -7,20 +8,28 @@ import Faq from "./Faq.astro";
 import Pricing from "./Pricing.astro";
 import Cta from "./Cta.astro";
 import Footer from "./Footer.astro";
+
+
+
+const response = await fetch('https://randomuser.me/api/');
+const data = await response.json();
+const randomUser = data.results[0]; 
+
 ---
 
-<section class="overflow-hidden relative">
-
-
+<section class="overflow-hidden relative ">
   <div class="p-4 lg:p-8 lg:pb-24 max-w-7xl mx-auto relative mt-20 md:mt-0">
+    <IntroBanner />
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+      
       <Intro />
+
       <Work />
-      <How />
-      <Testimonials />
-      <Pricing />
       <Faq />
       <Cta />
+      <Pricing />
+      
+      
       <Footer />
     </div>
   </div>

@@ -5,7 +5,19 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      zIndex: {
+        '100': '100',
+      },
+      backgroundImage: {
+        'na': "url('/public/back_na.jpg')",
+        'banner': "url('/public/curso_filosofia.jpg')",
+      },
       colors: {
+        greena1:"#64a848",
+        greena2: "#004C45",
+        filosofia: "#1C75BC",
+        cultura: "#FBB040",
+        voluntariado: "#BE1E2D",
         black: "#0f1014",
         ebony: "#1a1c23",
         mirage: "#27292D",
@@ -70,8 +82,9 @@ module.exports = {
         "6xl": "5rem",
       },
       fontFamily: {
-        display: ["Comico", ...defaultTheme.fontFamily.sans],
-        sans: ["Switzer", ...defaultTheme.fontFamily.sans],
+        sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
+        heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
       },
     },
   },

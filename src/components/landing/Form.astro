@@ -1,0 +1,197 @@
+---
+
+import { isValidEmail } from "../../utils/isValidEmail";
+
+const errors = { name: "", email: "", sede: "" };
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    console.log(data)
+    const name = data.get("name");
+    const email = data.get("email");
+    const sede = data.get("sede");
+    if (typeof name !== "string" || name.length < 1) {
+      errors.name += "Please enter a name. ";
+    }
+    if (typeof email !== "string" || !isValidEmail(email)) {
+      errors.email += "Email is not valid. ";
+    } 
+    if (typeof sede !== "string" || sede.length < 6) {
+      errors.sede += "sede must be at least 6 characters. ";
+    }
+    const hasErrors = Object.values(errors).some(msg => msg)
+    if (!hasErrors) {
+      //await registerUser({name, email, password});
+      //return Astro.redirect("/login");
+      console.log("grabar")
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+<div class="text-white">
+  <div class="">
+    <div class="flex flex-col">
+    <form method="POST">
+
+      <div class="flex flex-col sm:flex-row items-center">
+        <h2 class="font-semibold text-lg mr-auto">
+          Envía tu Pre-Inscripción / Reserva tu cupo
+        </h2>
+        <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
+      </div>
+      <div class="mt-5">
+        <div class="form text-gray-800">
+          <div class="mb-3 space-y-2 w-full text-sm">
+            <label class="font-semibold text-white py-2" for="sede"
+              >Busca tu sede mas Cercana</label
+            >
+            <select
+              id="sede"
+              name="sede"
+              required 
+              class="border border-grey-lighter rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+              dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+              transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+              "
+            >
+            <option value="">—Por favor, elige una opción—</option>
+            <option value="Arica (Calle Sargento Aldea 1049)">Arica (Calle Sargento Aldea 1049)</option>
+            <option value="Antofagasta (Manuel Verbal 1416)">Antofagasta (Manuel Verbal 1416)</option>
+            <option value="Iquique (San Martín 486)">Iquique (San Martín 486)</option>
+            <option value="Copiapó (Atacama 1047)">Copiapó (Atacama 1047)</option>
+            <option value="Coquimbo (Pacomio Gómez 22)">Coquimbo (Pacomio Gómez 22)</option>
+            <option value="La Serena (Juan de Dios Peni 341)">La Serena (Juan de Dios Peni 341)</option>
+            <option value="Santiago (Vic. Mackenna 76, Providencia)">Santiago (Vic. Mackenna 76, Providencia)</option>
+            <option value="Las Condes (Puccini 7056)">Las Condes (Puccini 7056)</option>
+            <option value="Ñuñoa (Av. Irarrázaval 3799-A)">Ñuñoa (Av. Irarrázaval 3799-A)</option>
+            <option value="La Florida (Trinidad Poniente 273 - Metro Trinidad)">La Florida (Trinidad Poniente 273 - Metro Trinidad)</option>
+            <option value="Quilpué (Esmeralda 660)">Quilpué (Esmeralda 660)</option>
+            <option value="Viña del Mar (12 Norte 938)">Viña del Mar (12 Norte 938)</option>
+            <option value="Valparaíso (Dr. Montt Saavedra 37)">Valparaíso (Dr. Montt Saavedra 37)</option>
+            <option value="Rancagua (Avenida Millán 626)">Rancagua (Avenida Millán 626)</option>
+            <option value="San Fernando (Argomedo 747)">San Fernando (Argomedo 747)</option>
+            <option value="Curicó (Calle Merced 235, Block 3, Oficina 202)">Curicó (Calle Merced 235, Block 3, Oficina 202)</option>
+            <option value="Talca (2 Norte 3609)">Talca (2 Norte 3609)</option>
+            <option value="Concepción (Serrano 1127)">Concepción (Serrano 1127)</option>
+            <option value="Talcahuano (Castellón 202)">Talcahuano (Castellón 202)</option>
+            <option value="Temuco (Las Heras 355)">Temuco (Las Heras 355)</option>
+            <option value="Valdivia (Av. Simpson 2180)">Valdivia (Av. Simpson 2180)</option>
+            <option value="Osorno (Ramón Freire 819)">Osorno (Ramón Freire 819)</option>
+            <option value="Puerto Montt (Aníbal Pinto 297)">Puerto Montt (Aníbal Pinto 297)</option>
+            </select>
+
+
+            {errors.sede && <p class="text-red text-xs ">{errors.sede}</p>}
+          </div>
+
+          <div class="md:flex flex-row md:space-x-4 w-full text-xs">
+            <div class="mb-3 space-y-2 w-full text-xs">
+              <label class="font-semibold text-white py-2" for="name"
+                >Nombre <abbr title="required">*</abbr></label
+              >
+              <input
+                placeholder="Nombre"
+                class=" placeholder-gray-600  border-transparent appearance-none 
+                block w-full  text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 *:
+                transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+                "
+                required="required"
+                type="text"
+                name="name"
+                id="name"
+              />
+              {errors.name && <p class="text-red text-xs ">{errors.name}</p>}
+            </div>
+            <div class="mb-3 space-y-2 w-full text-xs">
+              <label class="font-semibold text-white py-2" for="apellido"
+                >Apellido <abbr title="required">*</abbr></label
+              >
+              <input
+                placeholder="apellido"
+                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4
+                transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+                "
+                required="required"
+                type="text"
+                name="apellido"
+                id="apellido"
+              />
+              {errors.email && <p class="text-red text-xs ">{errors.email}</p>}
+            </div>
+          </div>
+
+          <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+            <div class="w-full flex flex-col mb-3">
+              <label class="font-semibold text-white py-2" for="email">Email</label>
+              <input
+                placeholder="Email"
+                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4
+                transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+                "
+                type="text"
+                name="email"
+                id="email"
+              />
+            </div>
+            <div class="w-full flex flex-col mb-3">
+              <label class="font-semibold text-white py-2" for="whatsapp"
+                >Fono/WhatsApp</label
+              >
+              <input
+                placeholder="WhatsApp"
+                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4
+                transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+                "
+                type="text"
+                name="whatsapp"
+                id="whatsapp"
+              />
+            </div>
+          </div>
+
+          <div class="flex-auto w-full mb-1 text-xs space-y-2">
+            <label class="font-semibold text-white py-2" for="comentario">Comentario</label>
+            <textarea
+              name="comentario"
+              id="comentario"
+              class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg py-4 px-4
+              transition duration-500 ease-in-out transform bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400
+              "
+              placeholder="Enter your comapny info"
+              spellcheck="false"></textarea>
+            <p class="text-xs text-gray-400 text-left my-3">
+              You inserted 0 characters
+            </p>
+          </div>
+
+          <p class="text-xs text-red-500 text-right my-3">
+            Required fields are marked with an asterisk <abbr
+              title="Required field">*</abbr
+            >
+          </p>
+
+          <div
+            class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse"
+          >
+            <button
+              class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+            <button 
+              class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500"
+              >Enviar</button
+            >
+          </div>
+        </div>
+      </div>
+    
+    </form>
+
+    </div>
+  </div>
+</div>

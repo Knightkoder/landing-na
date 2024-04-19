@@ -7,18 +7,22 @@ import Navigation from "@/components/global/Navigation.astro";
   <head>
     <BaseHead />
   </head>
-  <body
-    class="bg-gray-100 flex flex-col min-h-screen mx-auto 2xl:max-w-screen-xl relative "
-  >
-
-    <Navigation />
-    <main class="flex-grow relative"><slot /></main>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <body class="bg-na">
+    <div class="bg-zinc-500 bg-opacity-30">
+      <div
+        class="flex flex-col min-h-screen mx-auto 2xl:max-w-screen-xl relative"
+      >
+        <Navigation />
+        <main class="flex-grow relative"><slot /></main>
+        <script
+          type="module"
+          src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+          nomodule
+          src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+        ></script>
+      </div>
+    </div>
   </body>
 </html>
