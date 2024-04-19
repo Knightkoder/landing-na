@@ -9,7 +9,7 @@ module.exports = {
         '100': '100',
       },
       backgroundImage: {
-        'na': "url('/public/back_na.jpg')",
+        'na': "url('/public/2.jpg')",
         'banner': "url('/public/curso_filosofia.jpg')",
       },
       colors: {

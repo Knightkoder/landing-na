@@ -1,6 +1,51 @@
-<div class="flex flex-col w-full h-80 mb-2">
-  <div class="bg-banner bg-opacity-80 rounded-3xl h-full ">
+<div class="flex flex-col w-full h-80 mb-2 opacity-70">
+  <div class="bg-banner bg-opacity-40 rounded-3xl h-full">
+    <!-- Contenedor principal de Swiper -->
+
 
   </div>
-
 </div>
+<script>
+  // Photoswipe y estilos
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "photoswipe/style.css";
+
+  // Configurar e inicializar Photoswipe
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#my-slider",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+  });
+  lightbox.init();
+
+  // Core de Swiper y estilos
+  import Swiper from "swiper";
+  import "swiper/css";
+  // Módulo Navigation de Swiper y estilos
+  import { Navigation } from "swiper/modules";
+  import "swiper/css/navigation";
+
+  // Configurar Swiper
+  const swiper = new Swiper(".swiper", {
+    modules: [Navigation],
+    loop: true,
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    breakpoints: {
+      // Cuando la pantalla es >= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      // Cuando la pantalla es >= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+    },
+    navigation: {
+      prevEl: ".swiper-button-prev",
+      nextEl: ".swiper-button-next",
+    },
+  });
+</script>
