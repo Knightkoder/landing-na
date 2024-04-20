@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev --host", 
-    "start": "astro dev --host",
+    "dev": "astro dev --host",
+    "start": "node dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview --host",
     "astro": "astro"
@@ -19,6 +19,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.4.2",
+    "astro-tunnel": "^0.1.6",
     "photoswipe": "^5.4.3",
     "preact": "^10.19.6",
     "swiper": "^11.1.1",
